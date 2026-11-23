@@ -1,0 +1,16 @@
+services:
+  gin-gorm-diskominfo-diy:
+    container_name: 'gin-gorm-diskominfo-diy'
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    image: "gin-gorm-diskominfo-diy:1.0.0"
+    ports:
+      - protocol: tcp
+        published: 3902
+        target: 3900
+    environment:
+      - USE_DOCKER=dev
+    volumes:
+      - .:/app
+    command: go run main.go
