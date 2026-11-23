@@ -12,6 +12,8 @@ import (
 func main() {
 	migrate := flag.Bool("migrate", false, "Run database migrations")
 	drop := flag.Bool("drop", false, "Drop database tables")
+	seed := flag.Bool("seed", false, "Seed database tables")
+	truncate := flag.Bool("truncate", false, "Truncate database tables")
 	flag.Parse()
 
 	db := app.OpenConnection()
@@ -27,6 +29,18 @@ func main() {
 	if *drop {
 		db.Migrator().DropTable(&domain.Users{}, &domain.Rooms{}, &domain.Bookings{})
 		fmt.Println("Tables successfully dropped ⚡ 🚀 🚗")
+		return
+	}
+
+	if *seed {
+		app.RunSeed(db)
+		fmt.Println("Tables successfully seed ⚡ 🚀 🚗")
+		return // Tambahkan ini untuk menghentikan eksekusi setelah seeding
+	}
+
+	if *truncate {
+		app.RunTruncate(db)
+		fmt.Println("Tables successfully truncated.")
 		return
 	}
 
