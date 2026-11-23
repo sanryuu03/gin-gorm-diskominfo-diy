@@ -11,6 +11,7 @@ import (
 
 func main() {
 	migrate := flag.Bool("migrate", false, "Run database migrations")
+	drop := flag.Bool("drop", false, "Drop database tables")
 	flag.Parse()
 
 	db := app.OpenConnection()
@@ -20,6 +21,12 @@ func main() {
 			panic("Gagal melakukan migrasi database!")
 		}
 		fmt.Println("Database successfully migrated ⚡ 🚀 🚗")
+		return
+	}
+
+	if *drop {
+		db.Migrator().DropTable(&domain.Users{})
+		fmt.Println("Tables successfully dropped ⚡ 🚀 🚗")
 		return
 	}
 
