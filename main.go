@@ -16,7 +16,7 @@ func main() {
 
 	db := app.OpenConnection()
 	if *migrate {
-		err := db.AutoMigrate(&domain.Users{})
+		err := db.AutoMigrate(&domain.Users{}, &domain.Rooms{})
 		if err != nil {
 			panic("Gagal melakukan migrasi database!")
 		}
@@ -25,7 +25,7 @@ func main() {
 	}
 
 	if *drop {
-		db.Migrator().DropTable(&domain.Users{})
+		db.Migrator().DropTable(&domain.Users{}, &domain.Rooms{})
 		fmt.Println("Tables successfully dropped ⚡ 🚀 🚗")
 		return
 	}
