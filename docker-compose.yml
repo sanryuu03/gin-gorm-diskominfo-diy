@@ -7,8 +7,8 @@ services:
     image: "gin-gorm-diskominfo-diy:1.0.0"
     ports:
       - protocol: tcp
-        published: 3902
-        target: 3900
+        published: 8080
+        target: 8080
     environment:
       - USE_DOCKER=dev
     volumes:
