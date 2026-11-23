@@ -26,7 +26,7 @@ func OpenConnection() *gorm.DB {
 	sslmode := os.Getenv("DB_SSLMODE")
 	timezone := os.Getenv("DB_TIMEZONE")
 
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s", host, user, password, dbname, port, sslmode, timezone)
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s prepared_statement_cache_size=0", host, user, password, dbname, port, sslmode, timezone)
 
 	dialect := postgres.Open(dsn)
 	db, err := gorm.Open(dialect, &gorm.Config{})

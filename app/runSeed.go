@@ -61,6 +61,25 @@ func seedUsers(db *gorm.DB) {
 	}
 }
 
+func createRoom(db *gorm.DB, room domain.Rooms) {
+	err := db.Create(&room).Error
+	helper.PanicIfError(err)
+}
+
+func seedRooms(db *gorm.DB) {
+	rooms := []domain.Rooms{
+		{Name: "Ruang Rapat A", Capacity: 20, IsActive: true},
+		{Name: "Ruang Rapat B", Capacity: 10, IsActive: true},
+		{Name: "Ruang Training", Capacity: 40, IsActive: true},
+		{Name: "Ruang Arsip", Capacity: 5, IsActive: false},
+	}
+
+	for _, room := range rooms {
+		createRoom(db, room)
+	}
+}
+
 func RunSeed(db *gorm.DB) {
 	seedUsers(db)
+	seedRooms(db)
 }
