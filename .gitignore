@@ -1,0 +1,27 @@
+# Binary output
+main
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Environment variables (keamanan)
+.env
+*.env
+!.env.example
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Go test binaries & coverage
+*.test
+*.out
