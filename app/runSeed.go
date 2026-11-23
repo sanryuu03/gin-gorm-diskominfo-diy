@@ -2,7 +2,7 @@ package app
 
 import (
 	"gin-gorm-diskominfo-diy/helper"
-	"gin-gorm-diskominfo-diy/model/domain"
+	"gin-gorm-diskominfo-diy/models/domain"
 	"time"
 
 	"golang.org/x/crypto/bcrypt"

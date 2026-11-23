@@ -4,7 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"gin-gorm-diskominfo-diy/app"
-	"gin-gorm-diskominfo-diy/model/domain"
+	"gin-gorm-diskominfo-diy/controllers"
+	"gin-gorm-diskominfo-diy/models/domain"
+	"gin-gorm-diskominfo-diy/repositories"
+	"gin-gorm-diskominfo-diy/services"
 
 	"github.com/gin-gonic/gin"
 )
@@ -44,12 +47,22 @@ func main() {
 		return
 	}
 
+	userRepo := repositories.NewUserRepository(db)
+	userService := services.NewUserService(userRepo)
+	authController := controllers.NewAuthController(userService)
+
 	router := gin.Default()
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
+
+	v1 := router.Group("/api/v1")
+	{
+		v1.POST("/auth/login", authController.Login)
+
+	}
 
 	fmt.Println(db)
 
