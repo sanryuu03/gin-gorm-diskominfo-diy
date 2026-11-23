@@ -9,9 +9,9 @@ import (
 type Bookings struct {
 	ID         uint
 	RoomID     uint   `gorm:"type:varchar(100)"`
-	Rooms      Rooms  `gorm:"foreignKey:ID;references:RoomID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	Rooms      Rooms  `gorm:"foreignKey:RoomID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	UserID     uint   `gorm:"type:varchar(255);not null"`
-	Users      Users  `gorm:"foreignKey:ID;references:UserID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	Users      Users  `gorm:"foreignKey:UserID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	Title      string `gorm:"type:varchar(150)"`
 	StartTime  time.Time
 	EndTime    time.Time
