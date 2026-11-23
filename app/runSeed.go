@@ -82,4 +82,5 @@ func seedRooms(db *gorm.DB) {
 func RunSeed(db *gorm.DB) {
 	seedUsers(db)
 	seedRooms(db)
+	seedBookings(db)
 }
