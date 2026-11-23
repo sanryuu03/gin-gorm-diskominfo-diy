@@ -9,7 +9,7 @@ import (
 type Users struct {
 	ID           uint
 	Name         string  `gorm:"type:varchar(100)"`
-	Email        *string `gorm:"unique;type:varchar(100)"`
+	Email        *string `gorm:"unique;type:varchar(150)"`
 	PasswordHash string  `gorm:"type:varchar(255)"`
 	Role         string  `gorm:"type:varchar(20)"`
 	CreatedAt    int64
